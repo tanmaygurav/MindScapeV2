@@ -1,0 +1,13 @@
+.tiles{
+    border-radius: 25px;
+}
+
+.darkbg{
+    color: white;
+    width: fit-content;
+    block-size: fit-content;
+}
+
+.lightbg{
+    color: black;
+}
