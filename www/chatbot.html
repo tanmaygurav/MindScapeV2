@@ -18,6 +18,35 @@
 
 
     <!-- Inline JS Code -->
+    <script>
+        !(function () {
+            let e = document.createElement("script"),
+                t = document.head || document.getElementsByTagName("head")[0];
+            (e.src =
+                "https://cdn.jsdelivr.net/npm/rasa-webchat@1.0.1/lib/index.js"),
+                // Replace 1.x.x with the version that you want
+                (e.async = !0),
+                (e.onload = () => {
+                    window.localStorage.clear();
+                    window.WebChat.default(
+                        {
+                            initPayload: "/greet",
+                            title: "SilentMoon",
+                            subtitle: "Say hi to get started!",
+                            profileAvatar: "",
+                            customData: { language: "en" },
+                            socketUrl: "http://localhost:5005", //192.168.0.107  //http://localhost:5005  //https://dc59-111-119-197-122.ngrok.io 
+                            socketPath: "/socket.io",
+                            hideWhenNotConnected: false,
+                            storage: "session",
+                            // add other props here
+                        },
+                        null
+                    );
+                }),
+                t.insertBefore(e, t.firstChild);
+        })();
+    </script>
     <!-- End Inline JS Code -->
     <!-- Bootstrap JS  -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

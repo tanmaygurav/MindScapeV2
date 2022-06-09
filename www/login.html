@@ -16,15 +16,16 @@
 <body>
     <div class="p-2 m-3 bg">
         <div>
-            <img src="./img/backarrow.svg" alt="backarrow image">
+            <img class="cursorhover" src="./img/backarrow.svg" alt="backarrow image">
         </div>
         <h1 class="p-2 row d-flex justify-content-center">Welcome Back!</h1>
         <div class="d-flex justify-content-center">
-            <img class="p-2 row d-inline-flex justify-content-center" src="./img/facebooklogin.svg"
+            <img class="p-2 row d-inline-flex justify-content-center cursorhover" src="./img/facebooklogin.svg"
                 alt="facebooklogin button">
         </div>
         <div class="d-flex justify-content-center">
-            <img class="p-2 row d-flex justify-content-center" src="./img/googlelogin.svg" alt="googlelogin button">
+            <img class="p-2 row d-flex justify-content-center cursorhover" src="./img/googlelogin.svg"
+                alt="googlelogin button">
         </div>
     </div>
     <br>
@@ -34,29 +35,36 @@
     <br>
     <div>
         <div class="p-2 row d-flex justify-content-center">
-            <input class=" emailForm" type="email" name="emailAddress" id="emailAddress" placeholder="      Email Address">
+            <input class=" emailForm" type="email" name="emailAddress" id="emailAddress"
+                placeholder="      Email Address">
         </div>
         <div class="p-2 row d-flex justify-content-center"> <input class="emailForm" type="password" name="password"
                 id="password" placeholder="     Password">
         </div>
     </div>
     <div class="d-flex justify-content-center m-2">
-        <img src="./img/loginimage.svg" alt="Login button">
+        <img id="loginbtn" class="cursorhover" src="./img/loginimage.svg" alt="Login button">
     </div>
     <div class="d-flex justify-content-center">
-        <p>Forgot password?</p>
+        <p class="cursorhover">Forgot password?</p>
     </div>
-<div class="d-flex justify-content-center">
-<p>ALREADY HAVE AN ACCOUNT ? <a href="signINandUp.html">SIGN UP</a></p>
-</div>
+    <div class="d-flex justify-content-center">
+        <p>ALREADY HAVE AN ACCOUNT ? <a href="signINandUp.html">SIGN UP</a></p>
+    </div>
 
 
 
+    <!-- Inline JS Code -->
+    <script>
+        document.getElementById('loginbtn').addEventListener('click', choosetopic)
+        function choosetopic() {
+            window.location = "choosetopic.html"
+        }
+    </script>
+    <!-- End Inline JS Code -->
 
 
 
-    <script src="cordova.js"></script>
-    <script src="js/index.js"></script>
     <!-- Bootstrap JS  -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"

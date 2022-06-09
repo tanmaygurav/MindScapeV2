@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta name="format-detection" content="telephone=no" />
     <meta name="msapplication-tap-highlight" content="no" />
@@ -11,7 +12,11 @@
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
     <title>MindScape</title>
 </head>
+
 <body class="p-5">
+    <div>
+        <img id="backarrow" class="cursorhover" src="./img/backarrow.svg" alt="<-" />
+    </div>
     <div class="p-3">
         <h1>What Brings you to Silent Moon?</h1>
         <br>
@@ -19,27 +24,35 @@
     </div>
 
     <div class="container-fluid row ">
-        <div class="col-sm-auto tiles m-3" style="background-color: #8E97FD;">
+        <div class="col-sm-auto tiles m-3 cursorhover" style="background-color: #F9B08F;">
+            <img src="./img/increasehappiness.svg" alt="increasehappiness Image">
+            <p class="lightbg p-2">Chat Bot</p>
+        </div>
+        <div class="col-sm-auto tiles m-3 cursorhover" style="background-color: #F9B08F;">
+            <img src="./img/increasehappiness.svg" alt="increasehappiness Image">
+            <p class="lightbg p-2">Home</p>
+        </div>
+        <div class="col-sm-auto tiles m-3 cursorhover" style="background-color: #8E97FD;">
             <img src="./img/reducestress.svg" alt="reducestress Image">
             <p class="darkbg p-2">Reduce Stress</p>
         </div>
-        <div class="col-sm-auto tiles m-3" style="background-color: #F36F5B;">
+        <div class="col-sm-auto tiles m-3 cursorhover" style="background-color: #F36F5B;">
             <img src="./img/improveperformance.svg" alt="improveperformance Image">
             <p class="darkbg p-2">Improve Performance</p>
         </div>
-        <div class="col-sm-auto tiles m-3" style="background-color: #F9B08F;">
+        <div class="col-sm-auto tiles m-3 cursorhover" style="background-color: #F9B08F;">
             <img src="./img/increasehappiness.svg" alt="increasehappiness Image">
             <p class="lightbg p-2">Increase Happiness</p>
         </div>
-        <div class="col-sm-auto tiles m-3" style="background-color: #FFCF87;">
+        <div class="col-sm-auto tiles m-3 cursorhover" style="background-color: #FFCF87;">
             <img src="./img/reduceanxiety.svg" alt="reduceanxiety Image">
             <p class="lightbg p-2">Reduce Anxiety</p>
         </div>
-        <div class="col-sm-auto tiles m-3" style="background-color: #6BB28E;">
+        <div class="col-sm-auto tiles m-3 cursorhover" style="background-color: #6BB28E;">
             <img src="./img/personalgrowth.svg" alt="personalgrowth Image">
             <p class="darkbg p-2">Personal Growth</p>
         </div>
-        <div class="col-sm-auto tiles m-3 p-1" style="background-color: #4E5668;">
+        <div class="col-sm-auto tiles m-3 p-1 cursorhover" style="background-color: #4E5668;">
             <img src="./img/bettersleep.svg" alt="bettersleep Image">
             <p class="darkbg p-2">Better Sleep</p>
         </div>
@@ -47,8 +60,45 @@
     </div>
 
 
-    <script src="cordova.js"></script>
-    <script src="js/index.js"></script>
+
+    <!-- Inline JavaScript -->
+    <script>
+        // Back Button Code
+        document.getElementById('backarrow').addEventListener('click', backsignup)
+        function backsignup() {
+            window.location = "signup.html"
+        }
+        // Chat bot code
+        !(function () {
+            let e = document.createElement("script"),
+            t = document.head || document.getElementsByTagName("head")[0];
+            (e.src =
+            "https://cdn.jsdelivr.net/npm/rasa-webchat@1.0.1/lib/index.js"),
+            // Replace 1.x.x with the version that you want
+            (e.async = !0),
+            (e.onload = () => {
+                window.localStorage.clear();
+                window.WebChat.default(
+                {
+                    initPayload: "/greet",
+                    title: "SilentMoon",
+                    subtitle: "Say hi to get started!",
+                    profileAvatar: "",
+                    customData: { language: "en" },
+                    socketUrl: "https://22ec-27-106-107-116.ngrok.io", //192.168.0.107  //http://localhost:5005  //https://dc59-111-119-197-122.ngrok.io 
+                    socketPath: "/socket.io",
+                    hideWhenNotConnected: false,
+                    storage: "session",
+                    // add other props here
+                },
+                null
+                );
+            }),
+            t.insertBefore(e, t.firstChild);
+        })();
+    </script>
+    <!-- End Inline JavaScript -->
+
     <!-- Bootstrap JS  -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -60,4 +110,5 @@
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
 </body>
+
 </html>

@@ -1,0 +1,28 @@
+.signupbtn {
+    width: 374px;
+    height: 63px;
+    left: 20px;
+    top: 705px;
+
+    background: #8E97FD;
+    border-radius: 38px;
+}
+
+.ss {
+    /* object-fit: fill; */
+    background-repeat: no-repeat;
+    background: url(../img/backgr.svg);
+    background-size: 60vh;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* .signInimage{
+width: 30%;
+height: auto;
+} */
+
+.cursorhover:hover {
+cursor: pointer;
+}

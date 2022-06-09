@@ -13,3 +13,7 @@
 /* background-repeat: no-repeat; */
 object-fit: contain;
 }
+
+.cursorhover:hover {
+    cursor: pointer;
+}

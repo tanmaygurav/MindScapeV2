@@ -1,11 +1,15 @@
-.bg{
+.bg {
     background-image: url(../img/login_signupbg.svg);
-/* background-repeat: no-repeat; */
-object-fit: contain;
+    /* background-repeat: no-repeat; */
+    object-fit: contain;
 }
 
-.emailForm{
+.emailForm {
     width: 380px;
     height: 40px;
     border-radius: 50px;
+}
+
+.cursorhover:hover {
+    cursor: pointer;
 }
