@@ -3,9 +3,7 @@
 }
 
 .darkbg{
-    color: white;
-    width: fit-content;
-    block-size: fit-content;
+    color: white;   
 }
 
 .lightbg{
@@ -15,3 +13,9 @@
 .cursorhover:hover {
     cursor: pointer;
 }
+
+.tilebox{
+    width: 152px;;
+    height: 152px;;
+}
+
