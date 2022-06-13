@@ -64,22 +64,23 @@
         <p class="text-center" onclick="return callLoginPage();">ALREADY HAVE AN ACCOUNT? <span id="loginbtn"
                 class="cursorhover" style="color: blue ;">LOG IN</span> </p>
     </div>
-
-    <!-- Debug : only for Development -->
-    <div class="d-flex justify-content-center ">
-        <button id="logoutbtn" class="btn btn-info">Logout</button>
-        <button id="adminlogin" class="btn btn-warning">Admin Login</button>
-    </div>
-    <div class="d-flex justify-content-center ">
-        <p>Current user : <span id="currentuser">NULL</span></p>
-    </div>
+    <footer>
+        <!-- Debug : only for Development -->
+        <div class="d-flex justify-content-center ">
+            <button id="logoutbtn" class="btn btn-info">Logout</button>
+            <button id="adminlogin" class="btn btn-warning">Admin Login</button>
+        </div>
+        <div class="d-flex justify-content-center ">
+            <p>Current user : <span id="currentuser">NULL</span></p>
+        </div>
+    </footer>
     <!-- Debug : only for Development -->
 
     <script type="module">
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-app.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-analytics.js";
-        import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile} from "https://www.gstatic.com/firebasejs/9.8.2/firebase-auth.js";
+        import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-auth.js";
         // TODO: Add SDKs for Firebase products that you want to use
         // https://firebase.google.com/docs/web/setup#available-libraries
 

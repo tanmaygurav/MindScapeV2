@@ -15,13 +15,13 @@
 
 <body>
     <nav class="navbar navbar-light bg-primary">
-        <a class="navbar-brand" href="#">
-          <img src="/docs/4.6/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+        <a class="navbar-brand" href="choosetopic.html">
+          <img src="img/logo.svg" width="30" height="30" class="d-inline-block align-top" alt="">
           MindScape
         </a>
       </nav>
 
-
+<footer>
     <!-- Debug : only for Development -->
     <div class="d-flex justify-content-center ">
         <button id="logoutbtn" class="btn btn-info">Logout</button>
@@ -31,13 +31,13 @@
         <p>Current user : <span id="currentuser">NULL</span></p>
     </div>
     <!-- Debug : only for Development -->
-
+</footer>
 
     <!-- Inline JS Code -->
     <script>
         !(function () {
             let e = document.createElement("script"),
-                t = document.head || document.getElementsByTagName("head")[0];
+                t = document.body || document.getElementsByTagName("body")[0];
             (e.src =
                 "https://cdn.jsdelivr.net/npm/rasa-webchat@1.0.1/lib/index.js"),
                 // Replace 1.x.x with the version that you want
