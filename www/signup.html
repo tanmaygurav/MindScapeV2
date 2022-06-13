@@ -24,8 +24,7 @@
         </div>
         <h1 class="p-2   d-flex justify-content-center">Create your account</h1>
         <div class="d-flex justify-content-center">
-            <img class="p-2 cursorhover" src="./img/facebooklogin.svg"
-                alt="facebooklogin button" />
+            <img class="p-2 cursorhover" src="./img/facebooklogin.svg" alt="facebooklogin button" />
         </div>
         <div class="d-flex justify-content-center">
             <img class="p-2   d-flex justify-content-center cursorhover" onclick="signInWithRedirect();"
@@ -41,14 +40,14 @@
         <div class="p-2   d-flex justify-content-center">
             <input class="emailForm" type="text" name="name" id="username" placeholder="      Name" required>
             <img class="" src="img/greentick.svg" id="emailtick"
-                style="margin-left: -30px; cursor: pointer;margin-top: 10px;"></i>
+                style="margin-left: -20px; cursor: pointer;margin-top: 10px;"></i>
 
         </div>
         <div class="p-2   d-flex justify-content-center">
             <input class=" emailForm" type="email" name="emailAddress" id="email" required
                 placeholder="      Email Address" />
             <img class="" src="img/greentick.svg" id="emailtick"
-                style="margin-left: -30px; cursor: pointer;margin-top: 10px;"></i>
+                style="margin-left: -20px; cursor: pointer;margin-top: 10px;"></i>
 
         </div>
         <div class="p-2   d-flex justify-content-center">
@@ -56,7 +55,7 @@
             <input class="emailForm" type="password" name="password" autocomplete="current-password" required
                 id="password" placeholder="      Password">
             <img class="" src="img/passwordeye.svg" id="togglePassword"
-                style="margin-left: -30px; cursor: pointer;margin-top: 10px;"></i>
+                style="margin-left: -20px; cursor: pointer;margin-top: 10px;"></i>
         </div>
         <div class="p-2   d-flex justify-content-center">
             <p>I have read the <a href="http://#">Privacy Policy</a> <input type="checkbox" name="privacy-policy"
@@ -67,13 +66,22 @@
         <img id="signupbtn" src="./img/getstarted.svg" alt="Login button" />
     </div>
     <br><br><br>
+    <!-- Debug : only for Development -->
+    <div class="d-flex justify-content-center ">
+        <button id="logoutbtn" class="btn btn-info">Logout</button>
+        <button id="adminlogin" class="btn btn-warning">Admin Login</button>
+    </div>
+    <div class="d-flex justify-content-center ">
+        <p>Current user : <span id="currentuser">no user</span></p>
+    </div>
+    <!-- Debug : only for Development -->
 
     <!-- Inline firebase script -->
     <script type="module">
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-app.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-analytics.js";
-        import { getAuth, createUserWithEmailAndPassword ,onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-auth.js";
+        import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-auth.js";
         // TODO: Add SDKs for Firebase products that you want to use
         // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -93,17 +101,17 @@
         const app = initializeApp(firebaseConfig);
         const analytics = getAnalytics(app);
         const auth = getAuth(app);
+        const user = auth.currentUser;
 
-        // document.getElementById('signupbtn').addEventListener('click', signUpUser)
-        document.getElementById('signupbtn').addEventListener('click', choosetopic)
+        document.getElementById('signupbtn').addEventListener('click', signUpUser)
+        // document.getElementById('signupbtn').addEventListener('click', choosetopic)
 
-        function choosetopic(){
-            window.location="choosetopic.html"
-        }
+
 
         function signUpUser() {
             let email = document.getElementById('email').value
             let password = document.getElementById('password').value
+            let currentusername = document.getElementById('username').value
 
             const auth = getAuth();
             createUserWithEmailAndPassword(auth, email, password)
@@ -112,6 +120,18 @@
                     const user = userCredential.user;
                     console.log(user);
                     window.location = "choosetopic.html";
+                    // if (!username) {
+                    //     username = "default"
+                    // }
+                    // updateProfile(auth.currentUser, {
+                    //     displayName: currentusername, photoURL: "https://example.com/jane-q-user/profile.jpg"
+                    // }).then(() => {
+                    //     console.log("Profile Updated");
+                    // }).catch((error) => {
+                    //     console.log(`Error while updating profile \n ${error}`);
+                    //     alert(`Error while updating profile \n ${error}`)
+                    // });
+
                     // ...
                 })
                 .catch((error) => {
@@ -127,7 +147,17 @@
                 // User is signed in, see docs for a list of available properties
                 // https://firebase.google.com/docs/reference/js/firebase.User
                 const uid = user.uid;
-                console.log(user);
+                console.log(`Current user : ${user.displayName}`);
+                // get current user details
+                if (user !== null) {
+                    user.providerData.forEach((profile) => {
+                        console.log("Sign-in provider: " + profile.providerId);
+                        console.log("  Provider-specific UID: " + profile.uid);
+                        console.log("  Name: " + profile.displayName);
+                        console.log("  Email: " + profile.email);
+                        document.getElementById("currentuser").innerText = profile.email;
+                    });
+                }
                 // ...
             } else {
                 // User is signed out
@@ -135,12 +165,22 @@
             }
         });
 
+        // update current user details
+
+
+
+
+
+
+
         // Back Button Code
         document.getElementById('backarrow').addEventListener('click', backsignINandUp)
-        function backsignINandUp(){
-            window.location="signINandUp.html"
+        function backsignINandUp() {
+            window.location = "signINandUp.html"
         }
-
+        function choosetopic() {
+            window.location = "choosetopic.html"
+        }
 
         // Text Input icons
         const togglePassword = document.querySelector('#togglePassword');
@@ -153,6 +193,46 @@
             // toggle the eye slash icon
             this.classList.toggle('fa-eye-slash');
         });
+
+
+        // Debug : only for Development
+        document
+            .getElementById("logoutbtn")
+            .addEventListener("click", logoutuser);
+
+        function logoutuser() {
+            signOut(auth).then(() => {
+                alert(`User Logged Out`)
+                document.getElementById("currentuser").innerText = "null";
+            }).catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.log(`Error code : ${errorCode} \n Error message ${errorMessage}`);
+                alert(`Error Occured ${errorMessage}`)
+            });
+        }
+
+
+        document.getElementById('adminlogin').addEventListener('click', adminlogin);
+        function adminlogin() {
+            let emailadmin = "tanmay.gurav@welingkar.org";
+            let passwordadmin = "123456"
+            signInWithEmailAndPassword(auth, emailadmin, passwordadmin)
+                .then((userCredential) => {
+                    // Signed in 
+                    const user = userCredential.user;
+                    console.log(user);
+                    window.location = "choosetopic.html";
+                    // ...
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    console.log(`Error code : ${errorCode} \n Error message ${errorMessage}`);
+                    alert(`Error Occured ${errorMessage}`)
+                });
+        }
+        // Debug : only for Development
 
     </script>
     <!-- <script src="cordova.js"></script> -->

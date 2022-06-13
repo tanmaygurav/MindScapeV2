@@ -6,7 +6,7 @@
     <meta name="msapplication-tap-highlight" content="no" />
     <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover" />
     <meta name="color-scheme" content="light dark" />
-    <link rel="stylesheet" href="css/styles.css" />
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
@@ -14,6 +14,25 @@
 </head>
 
 <body>
+    <nav class="navbar navbar-light bg-primary">
+        <a class="navbar-brand" href="#">
+          <img src="/docs/4.6/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+          MindScape
+        </a>
+      </nav>
+
+
+    <!-- Debug : only for Development -->
+    <div class="d-flex justify-content-center ">
+        <button id="logoutbtn" class="btn btn-info">Logout</button>
+        <button id="adminlogin" class="btn btn-warning">Admin Login</button>
+    </div>
+    <div class="d-flex justify-content-center ">
+        <p>Current user : <span id="currentuser">NULL</span></p>
+    </div>
+    <!-- Debug : only for Development -->
+
+
     <!-- Inline JS Code -->
     <script>
         !(function () {
@@ -32,10 +51,14 @@
                             subtitle: "Say hi to get started!",
                             profileAvatar: "",
                             customData: { language: "en" },
-                            socketUrl: "http://localhost:5005", //192.168.0.107  //http://localhost:5005  //https://dc59-111-119-197-122.ngrok.io 
+                            socketUrl: "https://22ec-27-106-107-116.ngrok.io", //192.168.0.107  //http://localhost:5005  //https://dc59-111-119-197-122.ngrok.io 
                             socketPath: "/socket.io",
                             hideWhenNotConnected: false,
                             storage: "session",
+                            showCloseButton: true,
+                            showFullScreenButton: true,
+                            fullScreenMode: true,
+                            embedded: true  // scrolls down from top after each input / output
                             // add other props here
                         },
                         null

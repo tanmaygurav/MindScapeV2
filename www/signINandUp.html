@@ -57,23 +57,119 @@
         <h6 class="text-center">Thousand of people are using silent moon for smalls meditation </h6>
     </div>
     <div class="d-flex justify-content-center ">
-        <button class="signupbtn cursorhover" onclick="return callSignUpPage();"> Sign Up</button>
+        <button id="signupbtn" class="signupbtn cursorhover"> Sign Up</button>
     </div>
     <br>
     <div class="d-flex justify-content-center ">
-        <p class="text-center" onclick="return callLoginPage();">ALREADY HAVE AN ACCOUNT? <span id="loginbtn" class="cursorhover"style="color: blue ;">LOG IN</span> </p>
+        <p class="text-center" onclick="return callLoginPage();">ALREADY HAVE AN ACCOUNT? <span id="loginbtn"
+                class="cursorhover" style="color: blue ;">LOG IN</span> </p>
     </div>
 
+    <!-- Debug : only for Development -->
+    <div class="d-flex justify-content-center ">
+        <button id="logoutbtn" class="btn btn-info">Logout</button>
+        <button id="adminlogin" class="btn btn-warning">Admin Login</button>
+    </div>
+    <div class="d-flex justify-content-center ">
+        <p>Current user : <span id="currentuser">NULL</span></p>
+    </div>
+    <!-- Debug : only for Development -->
 
-<script>
-document.getElementById('loginbtn').addEventListener('click', callLoginPage)
-function callLoginPage(){
-    window.location="login.html"
-}
-function callSignUpPage(){
-  window.location="signup.html"
-}
-</script>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-analytics.js";
+        import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile} from "https://www.gstatic.com/firebasejs/9.8.2/firebase-auth.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyBu9TWYZbOMZBHPlUqj4sI3_KIFp8VLuak",
+            authDomain: "mindscape-85092.firebaseapp.com",
+            projectId: "mindscape-85092",
+            storageBucket: "mindscape-85092.appspot.com",
+            messagingSenderId: "762557166448",
+            appId: "1:762557166448:web:bf91de7d4e984afbd115b5",
+            measurementId: "G-WJKTVQ1Q58"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const auth = getAuth(app);
+
+        // Observer for user auth
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                // User is signed in, see docs for a list of available properties
+                // https://firebase.google.com/docs/reference/js/firebase.User
+                const uid = user.uid;
+                console.log(user);
+                if (user !== null) {
+                    user.providerData.forEach((profile) => {
+                        console.log("Sign-in provider: " + profile.providerId);
+                        console.log("  Provider-specific UID: " + profile.uid);
+                        console.log("  Name: " + profile.displayName);
+                        console.log("  Email: " + profile.email);
+                        document.getElementById("currentuser").innerText = profile.email;
+                    });
+                }
+            } else {
+                // User is signed out
+                // ...
+            }
+        });
+
+        document.getElementById('loginbtn').addEventListener('click', callLoginPage);
+        function callLoginPage() {
+            window.location = "login.html"
+        }
+        document.getElementById('signupbtn').addEventListener('click', callSignUpPage);
+        function callSignUpPage() {
+            window.location = "signup.html"
+        }
+
+        // Debug : only for Development
+        document
+            .getElementById("logoutbtn")
+            .addEventListener("click", logoutuser);
+
+        function logoutuser() {
+            signOut(auth).then(() => {
+                alert(`User Logged Out`)
+                document.getElementById("currentuser").innerText = "null";
+            }).catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.log(`Error code : ${errorCode} \n Error message ${errorMessage}`);
+                alert(`Error Occured ${errorMessage}`)
+            });
+        }
+
+
+        document.getElementById('adminlogin').addEventListener('click', adminlogin);
+        function adminlogin() {
+            let emailadmin = "tanmay.gurav@welingkar.org";
+            let passwordadmin = "123456"
+            signInWithEmailAndPassword(auth, emailadmin, passwordadmin)
+                .then((userCredential) => {
+                    // Signed in 
+                    const user = userCredential.user;
+                    console.log(user);
+                    window.location = "choosetopic.html";
+                    // ...
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    console.log(`Error code : ${errorCode} \n Error message ${errorMessage}`);
+                    alert(`Error Occured ${errorMessage}`)
+                });
+        }
+        // Debug : only for Development
+    </script>
     <!-- <script src="cordova.js"></script> -->
     <!-- <script type="module" src="js/signINandUp.js"></script> -->
     <!-- Bootstrap JS  -->
